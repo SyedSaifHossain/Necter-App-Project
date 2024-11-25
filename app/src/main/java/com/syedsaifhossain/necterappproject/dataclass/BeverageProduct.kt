@@ -1,4 +1,6 @@
-package com.syedsaifhossain.necterappproject
+package com.syedsaifhossain.necterappproject.dataclass
+
+import com.syedsaifhossain.necterappproject.R
 
 data class BeverageProduct(
 

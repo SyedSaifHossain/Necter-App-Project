@@ -1,7 +1,9 @@
 package com.syedsaifhossain.necterappproject.components
 
+import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults.buttonColors
+import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -12,34 +14,38 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.TextUnit
 
 
-
-
 @Composable
 fun ButtonComponent(
     modifier: Modifier,
     onClick:()->Unit,
     containerColor: Color,
     contentColor: Color,
-    text : String="",
+    text: String="",
     fontWeight: FontWeight,
     fontSize: TextUnit,
     textAlign: TextAlign,
-    shape: Shape
-){
+    shape: Shape,
+    icon:@Composable (()->Unit)?=null
+
+) {
     Button(
         modifier = modifier,
         onClick = onClick,
         shape = shape,
         colors = buttonColors(
-            containerColor=containerColor,
-            contentColor=contentColor,
+            containerColor = containerColor,
+            contentColor = contentColor,
         )
     )
     {
-        Text(modifier = modifier,
+        if(icon!=null){ icon()}
+
+        Text(
+            modifier = modifier,
             text = text,
             fontWeight = fontWeight,
             fontSize = fontSize,
-            textAlign = textAlign)
+            textAlign = textAlign
+        )
     }
 }

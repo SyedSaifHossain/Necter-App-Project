@@ -1,7 +1,6 @@
 package com.syedsaifhossain.necterappproject.screens
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -11,7 +10,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -24,12 +22,16 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.syedsaifhossain.necterappproject.R
 import com.syedsaifhossain.necterappproject.components.ButtonComponent
 import com.syedsaifhossain.necterappproject.components.TextComponent
+import com.syedsaifhossain.necterappproject.navigation.NavigationGraph
+
 
 @Composable
-fun Onboarding(modifier: Modifier = Modifier) {
+fun Onboarding(navController: NavController,modifier: Modifier = Modifier) {
     Box(modifier.fillMaxSize()) {
         Image(
             painter = painterResource(id = R.drawable.welcomebackground),
@@ -73,18 +75,21 @@ fun Onboarding(modifier: Modifier = Modifier) {
                 fontWeight = FontWeight.Normal,
                 color = Color.White,
                 textAlign = TextAlign.Center)
+
             Spacer(modifier = modifier.height(30.dp))
+
             ButtonComponent(
                 modifier = Modifier.fillMaxWidth()
                     .padding(30.dp,15.dp),
-                onClick = {},
+                onClick = {navController.navigate(NavigationGraph.SingIn.route)},
                 containerColor = Color(0xFF53b175),
                 contentColor = Color.White,
                 text = "Get Started",
                 fontWeight = FontWeight.Bold,
                 fontSize = 25.sp,
                 textAlign = TextAlign.Center,
-                shape = RoundedCornerShape(15.dp)
+                shape = RoundedCornerShape(15.dp),
+                icon = null
             )
         }
     }
@@ -94,5 +99,5 @@ fun Onboarding(modifier: Modifier = Modifier) {
 @Preview(showBackground = true)
 @Composable
 fun OnboardingPreview() {
-    Onboarding()
+    Onboarding(navController = rememberNavController())
 }
