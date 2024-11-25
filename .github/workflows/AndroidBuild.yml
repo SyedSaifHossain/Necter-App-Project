@@ -1,9 +1,24 @@
-
-
 name: AndroidBuild
 on:
   pull_request:
-
-      branches: [master]
+    branches: [ master ]
   push:
-    branches: [master]
+    branches: [ master ]
+    jobs:
+      build:
+      runs-on: windows
+      steps:
+        - name: Checkout
+          uses: actions/checkout@v4.2.2
+      with:
+       java-version: '21'
+       distribution: 'adopt'
+        - name: Setup java jdk
+          uses: actions/setup-java@v4.5.0
+              - name: Build with Gradles
+      run: ./gradle build
+             - name: Upload a Build Artifact
+  uses: actions/upload-artifact@v4.4.3
+  with:
+  name: NecterAppProject.apk
+  path: app/build/outputs/apk/debug/app-debug.apk
